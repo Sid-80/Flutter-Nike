@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './Screens/cart.dart';
 import './Screens/HomePage.dart';
 import './Screens/contentPage.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return
+      MultiProvider(providers: [
+          ChangeNotifierProvider(create:(ctx) => contentOfProducts()),
+          ChangeNotifierProvider(create:(ctx) =>Cart()),
+      ],
+
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -28,7 +34,6 @@ class MyApp extends StatelessWidget {
           '/cardContent' : (context) => cardContent()
         },
       ),
-      create: (ctx) => contentOfProducts(),
     );
   }
 }

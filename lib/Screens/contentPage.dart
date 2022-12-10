@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/contentClass.dart';
 import '../providers/content_provider.dart';
+import './cart.dart';
 
 enum dropdownList{
   Favourites,
@@ -21,6 +22,7 @@ class _contentPageState extends State<contentPage> {
     var showOnlyFav = false;
     final product = Provider.of<contentOfProducts>(context);
     final productData = showOnlyFav ? product.favouriteItems : product.items;
+    final cart = Provider.of<Cart>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -42,6 +44,7 @@ class _contentPageState extends State<contentPage> {
                 const PopupMenuItem(child: Text("Cart"),value: dropdownList.Cart,)
               ]
           ),
+
         ],
       ),
       body: Container(
@@ -75,6 +78,7 @@ class ContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   final product = Provider.of<Content>(context);
+  final cart = Provider.of<Cart>(context);
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [Colors.tealAccent ,Colors.white],begin: Alignment.topLeft, end: Alignment.bottomRight),
@@ -106,10 +110,19 @@ class ContentCard extends StatelessWidget {
                           )
                       ),
                       Consumer<Content>(
-                        builder: (ctx,product,child) =>  ElevatedButton(
-                            onPressed: () {
-                              product.toggleFavourite();
-                            }, child: (product.isFav ? Icon(Icons.favorite):Icon(Icons.favorite_border))
+                        builder: (ctx,product,child) =>  Column(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  product.toggleFavourite();
+                                }, child: (product.isFav ? Icon(Icons.favorite):Icon(Icons.favorite_border))
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  cart.addItem(product.id, product.price, product.title);
+                                },
+                                child: const Icon(Icons.shopping_cart))
+                          ],
                         ),
                       )
                     ],
