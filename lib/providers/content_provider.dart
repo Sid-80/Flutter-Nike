@@ -33,20 +33,26 @@ class contentOfProducts with ChangeNotifier{
     ),
   ];
 
-  var _showFavouritesOnly = false;
+  // var _showFavouritesOnly = false;
 
   List<Content> get items{
-    if(_showFavouritesOnly){
-      return _items.where((element) => element.isFav).toList();
-    }
+    // if(_showFavouritesOnly){
+    //   return _items.where((element) => element.isFav).toList();
+    // }
     return [..._items];
   }
-  void showFavouritesOnly(){
-    _showFavouritesOnly = true;
-    notifyListeners();
+
+  List<Content> get favouriteItems{
+    return _items.where((element) => element.isFav).toList();
+
   }
-  void showAll(){
-    _showFavouritesOnly = false;
-    notifyListeners();
-  }
+
+  // void showFavouritesOnly(){
+  //   _showFavouritesOnly = true;
+  //   notifyListeners();
+  // }
+  // void showAll(){
+  //   _showFavouritesOnly = false;
+  //   notifyListeners();
+  // }
 }

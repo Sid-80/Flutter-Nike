@@ -18,19 +18,23 @@ class contentPage extends StatefulWidget {
 class _contentPageState extends State<contentPage> {
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<contentOfProducts>(context,listen: false);
-    final productData = product.items;
+    var showOnlyFav = false;
+    final product = Provider.of<contentOfProducts>(context);
+    final productData = showOnlyFav ? product.favouriteItems : product.items;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Nike"),
         actions: <Widget>[
           PopupMenuButton(
             onSelected: (dropdownList selectedValue) {
-              if(selectedValue == dropdownList.Favourites){
-                product.showFavouritesOnly();
-              }else{
-                product.showAll();
-              }
+              setState(() {
+                if(selectedValue == dropdownList.Favourites){
+                  showOnlyFav = true;
+                }else{
+                  showOnlyFav = false;
+                }
+              });
             },
             icon: const Icon(Icons.more_vert),
               itemBuilder: (_) => [
@@ -50,8 +54,8 @@ class _contentPageState extends State<contentPage> {
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20
             ),
-            itemBuilder: (ctx, i) => ChangeNotifierProvider(
-              create: (context) =>productData[i],
+            itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+              value: productData[i],
               child: ContentCard(),
             ),
           itemCount: productData.length,
