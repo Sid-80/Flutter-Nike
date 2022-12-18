@@ -10,11 +10,15 @@ class cartItem{
 }
 
 class Cart with ChangeNotifier{
-  late Map<String,cartItem> _items;
+  late Map<String,cartItem> _items = {};
 
   Map<String,cartItem> get items{
     return{..._items};
 }
+
+  int get itemCount{
+    return _items.length;
+  }
 
   void addItem(String itemId, double price, String title, ){
     if(_items.containsKey(itemId)){
@@ -22,5 +26,6 @@ class Cart with ChangeNotifier{
     }else{
       _items.putIfAbsent(itemId,() => cartItem(id: DateTime.now().toString(), title: title, quantity: 1, price: price));
     }
+    notifyListeners();
   }
 }

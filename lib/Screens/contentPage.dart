@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/contentClass.dart';
 import '../providers/content_provider.dart';
 import './cart.dart';
+import '../widgets/badge.dart';
 
 enum dropdownList{
   Favourites,
@@ -44,7 +45,14 @@ class _contentPageState extends State<contentPage> {
                 const PopupMenuItem(child: Text("Cart"),value: dropdownList.Cart,)
               ]
           ),
-
+         Consumer<Cart>(
+           builder: (_, cart, ch)=>Badge(
+             child: IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+             value: cart.itemCount.toString(),
+             color: Colors.blueAccent,
+           ),
+           child: IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+         )
         ],
       ),
       body: Container(
