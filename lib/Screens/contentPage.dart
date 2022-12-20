@@ -47,11 +47,15 @@ class _contentPageState extends State<contentPage> {
           ),
          Consumer<Cart>(
            builder: (_, cart, ch)=>Badge(
-             child: IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+             child: IconButton(onPressed: () {
+               Navigator.pushNamed(context, '/cart');
+             }, icon: Icon(Icons.shopping_cart)),
              value: cart.itemCount.toString(),
              color: Colors.blueAccent,
            ),
-           child: IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+           child: IconButton(onPressed: () {
+             Navigator.pushNamed(context, '/cart');
+           }, icon: Icon(Icons.shopping_cart)),
          )
         ],
       ),
