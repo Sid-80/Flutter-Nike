@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../providers/content_provider.dart';
+import '../widgets/order_drawer.dart';
 import 'package:provider/provider.dart';
 
 class cardContent extends StatelessWidget {
@@ -11,9 +12,10 @@ class cardContent extends StatelessWidget {
       appBar: AppBar(
         title: Text(loadedProduct.title),
       ),
+      drawer: OrderDrawer(),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Card(
             color: Colors.grey,
             child: Column(
@@ -23,11 +25,11 @@ class cardContent extends StatelessWidget {
                   width: double.infinity,
                   child: Image.network(loadedProduct.imageUrl,fit: BoxFit.cover,),
                 ),
-                SizedBox(height: 20,),
-                Text('\₹${loadedProduct.price}', style: TextStyle(fontSize: 20),),
-                SizedBox(height: 10,),
+                const SizedBox(height: 20,),
+                Text('\₹${loadedProduct.price}', style: const TextStyle(fontSize: 20),),
+                const SizedBox(height: 10,),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                   width: double.infinity,
                   child: Text(
                     loadedProduct.description,

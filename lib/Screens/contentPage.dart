@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopmain/widgets/order_drawer.dart';
 import '../providers/contentClass.dart';
 import '../providers/content_provider.dart';
 import './cart.dart';
@@ -26,8 +27,10 @@ class _contentPageState extends State<contentPage> {
     final cart = Provider.of<Cart>(context);
 
     return Scaffold(
+      drawer: OrderDrawer(),
       appBar: AppBar(
         title: const Text("Nike"),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           PopupMenuButton(
             onSelected: (dropdownList selectedValue) {
@@ -55,10 +58,11 @@ class _contentPageState extends State<contentPage> {
            ),
            child: IconButton(onPressed: () {
              Navigator.pushNamed(context, '/cart');
-           }, icon: Icon(Icons.shopping_cart)),
+           }, icon: const Icon(Icons.shopping_cart)),
          )
         ],
       ),
+
       body: Container(
         padding: const EdgeInsets.all(20),
         child: GridView.builder(
@@ -92,7 +96,7 @@ class ContentCard extends StatelessWidget {
   final product = Provider.of<Content>(context);
   final cart = Provider.of<Cart>(context);
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(colors: [Colors.tealAccent ,Colors.white],begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
         child: InkWell(
@@ -106,7 +110,7 @@ class ContentCard extends StatelessWidget {
             color: Colors.transparent,
             elevation: 2,
             child: Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
