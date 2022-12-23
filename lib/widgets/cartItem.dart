@@ -14,6 +14,20 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
+      confirmDismiss: (direction) {
+        return showDialog(context: context, builder: (ctx) => AlertDialog(
+          title: const Text("Are you sure ?"),
+          content: const Text("Do you want to remove item from the cart ?"),
+          actions: [
+            TextButton(onPressed: () {
+              Navigator.of(ctx).pop(false);
+            }, child: const Text("NO")),
+            TextButton(onPressed: () {
+              Navigator.of(ctx).pop(true);
+            }, child: const Text("YES"))
+          ],
+        ));
+      },
       key: ValueKey(id),
       background: Container(
         color: Colors.black87,
@@ -36,7 +50,7 @@ class CartItem extends StatelessWidget {
             ),
             title: Text(title),
             subtitle: Text("Total : \$${price * quantity}"),
-            trailing: Text('${quantity} x'),
+            trailing: Text('$quantity x'),
           ),
         ),
       ),
