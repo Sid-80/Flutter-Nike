@@ -8,6 +8,7 @@ import './Screens/contentPage.dart';
 import 'package:provider/provider.dart';
 import './providers/content_provider.dart';
 import './Screens/cardContent.dart';
+import 'Screens/userProductScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
           '/cardContent' : (context) => cardContent(),
           '/cart' : (context) => CartScreen(),
           '/order' : (context) => OrdersScreen(),
+          '/userproduct' : (context) => userProductScreen(),
         },
       ),
     );

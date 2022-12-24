@@ -24,6 +24,13 @@ class OrderDrawer extends StatelessWidget {
             onTap: (){
               Navigator.of(context).pushReplacementNamed('/order');
             },
+          ),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text("Manage Products !!"),
+            onTap: (){
+              Navigator.of(context).pushReplacementNamed('/userproduct');
+            },
           )
         ],
       ),

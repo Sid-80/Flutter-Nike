@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopmain/widgets/order_drawer.dart';
+import 'package:shopmain/widgets/userProductItem.dart';
 import '../providers/content_provider.dart';
 
 class userProductScreen extends StatelessWidget {
@@ -15,9 +17,18 @@ class userProductScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.add))
         ],
       ),
+      drawer: OrderDrawer(),
       body: Padding(
           padding: const EdgeInsets.all(10),
-        child: ListView.builder(itemBuilder: () =>),
+        child: ListView.builder(
+          itemBuilder: (_,i) => Column(
+            children: [
+              userProductItem(title: productData.items[i].title, ImageUrl: productData.items[i].imageUrl),
+              Divider(),
+            ],
+          ),
+          itemCount: productData.items.length,
+        ),
       ),
     );
   }
