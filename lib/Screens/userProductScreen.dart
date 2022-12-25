@@ -14,7 +14,9 @@ class userProductScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Your Products"),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.add))
+          IconButton(onPressed: () {
+            Navigator.pushNamed(context, '/editScreen');
+          }, icon: const Icon(Icons.add))
         ],
       ),
       drawer: OrderDrawer(),
